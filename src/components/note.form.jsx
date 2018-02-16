@@ -67,7 +67,7 @@ class NoteForm extends Component {
           />
         </FormGroup>
 
-        <Button bsStyle="primary" title={I18n.t("action_save")} type="submit"><FontAwesome name="save" /></Button>
+        <Button bsStyle="primary" title={I18n.t("action_save")} type="submit" id="action-save"><FontAwesome name="save" /></Button>
 
       </form>
     </Grid>);

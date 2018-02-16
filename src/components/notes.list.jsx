@@ -28,17 +28,17 @@ class NotesList extends Component {
         <h1>{I18n.t("notes_list")}</h1>
         <ListGroup>
           {notes.map(note => (<ListGroupItem key={note.id}>
-            {note.title}
+            <span id={"note-"+note.id}>{note.title}</span>
             <ButtonGroup className="actions">
-              <Button bsStyle="danger" title={I18n.t("action_delete")} onClick={e => this.handleDelete(note.id)}><FontAwesome name="trash" /></Button>
-              <Link to={"/note/edit/" + note.id}><Button title={I18n.t("action_edit")} bsStyle="warning"><FontAwesome name="pencil" /></Button></Link>
+              <Button id={"action-delete-"+note.id} bsStyle="danger" title={I18n.t("action_delete")} onClick={e => this.handleDelete(note.id)}><FontAwesome name="trash" /></Button>
+              <Link id={"action-edit-"+note.id} to={"/note/edit/" + note.id}><Button title={I18n.t("action_edit")} bsStyle="warning"><FontAwesome name="pencil" /></Button></Link>
             </ButtonGroup>
           </ListGroupItem>)
           )}
         </ListGroup>
       </Row>
       <ButtonGroup className="actions">
-        <Link to={"/note/new"}><Button bsStyle="success" title={I18n.t("action_create")}><FontAwesome name="plus" /></Button></Link>
+        <Link to={"/note/new"} id="action-create"><Button bsStyle="success" title={I18n.t("action_create")}><FontAwesome name="plus" /></Button></Link>
       </ButtonGroup>
     </Grid>);
   }
