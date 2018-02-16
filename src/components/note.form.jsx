@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesService } from '../services/notes.service';
+import { translate } from 'react-i18next';
 
 import { updateNote, createNote } from '../actions/notes.action';
 
@@ -50,22 +51,24 @@ class NoteForm extends Component {
   render() {
     const { note_id } = this.props.params;
     const { title } = this.state.note;
+    const { t } = this.props;
 
     return (<Grid>
-      <h1>{!note_id ? "Nová poznámka" : "Editace poznámky"}</h1>
+      <h1>{!note_id ? t("note.creation") : t("note.editation")}</h1>
 
       <form onSubmit={this.onSubmit}>
         <FormGroup controlId="title">
-          <ControlLabel>Titulek poznámky</ControlLabel>
+          <ControlLabel>{t("note.title")}</ControlLabel>
           <FormControl
             type="text"
+            autoFocus
             value={title}
-            placeholder="Enter title of note"
+            placeholder={t("note.title_placeholder")}
             onChange={this.handleChange}
           />
         </FormGroup>
 
-        <Button bsStyle="primary" type="submit"><FontAwesome name="save" /></Button>
+        <Button bsStyle="primary" title={t("actions.save")} type="submit"><FontAwesome name="save" /></Button>
 
       </form>
     </Grid>);
@@ -84,4 +87,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(NoteForm));
