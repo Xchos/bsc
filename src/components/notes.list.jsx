@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNotes, deleteNote } from '../actions/notes.action';
-import { translate } from 'react-i18next';
+import { I18n } from 'react-redux-i18n';
 
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
@@ -22,23 +22,23 @@ class NotesList extends Component {
   }
 
   render() {
-    const { notes, t } = this.props;
+    const { notes } = this.props;
     return (<Grid>
       <Row>
-        <h1>{t("notes.list")}</h1>
+        <h1>{I18n.t("notes.list")}</h1>
         <ListGroup>
           {notes.map(note => (<ListGroupItem key={note.id}>
             {note.title}
             <ButtonGroup className="actions">
-              <Button bsStyle="danger" title={t("actions.delete")} onClick={e => this.handleDelete(note.id)}><FontAwesome name="trash" /></Button>
-              <Link to={"/note/edit/" + note.id}><Button title={t("actions.edit")} bsStyle="warning"><FontAwesome name="pencil" /></Button></Link>
+              <Button bsStyle="danger" title={I18n.t("actions.delete")} onClick={e => this.handleDelete(note.id)}><FontAwesome name="trash" /></Button>
+              <Link to={"/note/edit/" + note.id}><Button title={I18n.t("actions.edit")} bsStyle="warning"><FontAwesome name="pencil" /></Button></Link>
             </ButtonGroup>
           </ListGroupItem>)
           )}
         </ListGroup>
       </Row>
       <ButtonGroup className="actions">
-        <Link to={"/note/new"}><Button bsStyle="success" title={t("actions.create")}><FontAwesome name="plus" /></Button></Link>
+        <Link to={"/note/new"}><Button bsStyle="success" title={I18n.t("actions.create")}><FontAwesome name="plus" /></Button></Link>
       </ButtonGroup>
     </Grid>);
   }
@@ -56,5 +56,5 @@ function mapDispatchToProps(dispatch) {
     fetchNotes, deleteNote
   }, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(NotesList));
+export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
 

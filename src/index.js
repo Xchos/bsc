@@ -7,12 +7,7 @@ import NotesList from './components/notes.list';
 import NoteForm from './components/note.form';
 import BaseComponent from './components/base.component';
 
-
-import i18n from './i18n';
-import { I18nextProvider } from 'react-i18next';
-
 ReactDOM.render(
-  <I18nextProvider i18n={i18n}>
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={BaseComponent}>
@@ -22,5 +17,4 @@ ReactDOM.render(
         </Route>
       </Router>
     </Provider>
-  </I18nextProvider>
   , document.getElementById('app'));

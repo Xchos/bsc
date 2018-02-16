@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesService } from '../services/notes.service';
-import { translate } from 'react-i18next';
 
 import { updateNote, createNote } from '../actions/notes.action';
 
 import { Grid, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import { hashHistory } from "react-router";
+import { I18n } from 'react-redux-i18n';
 
 class NoteForm extends Component {
 
@@ -51,24 +51,23 @@ class NoteForm extends Component {
   render() {
     const { note_id } = this.props.params;
     const { title } = this.state.note;
-    const { t } = this.props;
 
     return (<Grid>
-      <h1>{!note_id ? t("note.creation") : t("note.editation")}</h1>
+      <h1>{!note_id ? I18n.t("note_creation") : I18n.t("note_editation")}</h1>
 
       <form onSubmit={this.onSubmit}>
         <FormGroup controlId="title">
-          <ControlLabel>{t("note.title")}</ControlLabel>
+          <ControlLabel>{I18n.t("note_title")}</ControlLabel>
           <FormControl
             type="text"
             autoFocus
             value={title}
-            placeholder={t("note.title_placeholder")}
+            placeholder={I18n.t("note_title_placeholder")}
             onChange={this.handleChange}
           />
         </FormGroup>
 
-        <Button bsStyle="primary" title={t("actions.save")} type="submit"><FontAwesome name="save" /></Button>
+        <Button bsStyle="primary" title={I18n.t("action_save")} type="submit"><FontAwesome name="save" /></Button>
 
       </form>
     </Grid>);
@@ -87,4 +86,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(NoteForm));
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
