@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { setLocale } from 'react-redux-i18n';
+import { setLocale, I18n } from 'react-redux-i18n';
 import { connect } from 'react-redux';
 
 
 class BaseComponent extends React.Component {
 
     render() {
-        const { dispatch, lang } = this.props;
-        console.log(lang);
+        const { dispatch, i18n } = this.props;
+        console.log(i18n);
         return (<div>
             <Navbar fluid>
                 <Navbar.Header>
@@ -16,10 +16,11 @@ class BaseComponent extends React.Component {
                         <a href="/#/">BSC Notes</a>
                     </Navbar.Brand>
                 </Navbar.Header>
-                <Nav pullRight>
+                {/* @TODO: language switch
+                    <Nav pullRight>
                     <NavItem onClick={e => dispatch(setLocale("CS"))}>Česky</NavItem>
                     <NavItem onClick={e => dispatch(setLocale("EN"))}>English</NavItem>
-                </Nav>
+                </Nav>*/}
             </Navbar>
             <div id="main">
                 {this.props.children}
@@ -30,7 +31,7 @@ class BaseComponent extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        lang: state.lang
+        i18n: state.i18n
     };
 }
 

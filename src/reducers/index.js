@@ -8,5 +8,5 @@ import { setLocale, loadTranslations, syncTranslationWithStore, i18nReducer } fr
 // rootReducer
 export default combineReducers({
     notes: notesReducer,
-    lang: i18nReducer
+    i18n: i18nReducer
 });
