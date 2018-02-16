@@ -1,0 +1,12 @@
+body {
+    margin-top: 30px;
+}
+
+.list-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.actions {
+    float: right;
+}
