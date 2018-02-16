@@ -8,7 +8,6 @@ class BaseComponent extends React.Component {
 
     render() {
         const { dispatch, i18n } = this.props;
-        console.log(i18n);
         return (<div>
             <Navbar fluid>
                 <Navbar.Header>

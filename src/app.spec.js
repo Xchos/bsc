@@ -39,7 +39,6 @@ describe('Testing app', function() {
         browser.driver.sleep(1000);
         const list = element.all(by.css('.btn-danger'));
         list.last().click();
-        console.log(list);
         browser.driver.sleep(1000);
         
         expect($$(".list-group-item").count()).toBe(2);
